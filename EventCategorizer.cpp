@@ -1313,6 +1313,10 @@ std::vector< std::vector<TVector3> > FindIntersectionPointsOfSpheres( std::vecto
 						      Hits[previousHitIterator].getPosY() - Hits[i].getPosY(), 
 						      Hits[previousHitIterator].getPosZ() - Hits[i].getPosZ() );
 		TVector3 ZeroCrossProduct = SphereCenter1ToCircleCenter.Cross( SphereCenter2ToCircleCenter );
+		if( ZeroCrossProduct(0) == 0 && ZeroCrossProduct(1) == 0 ZeroCrossProduct(2) == 0 )
+		{
+			ZeroCrossProduct(2) = 1
+		}
 		TVector3 VectorToMinPointOnCircle = SphereCenter1ToCircleCenter.Cross( ZeroCrossProduct );	
 		VectorToMinPointOnCircle = VectorToMinPointOnCircle.Unit();	
 		TVector3 MinPointCircle = Position + VectorToMinPointOnCircle * RadiusOfCircle;
